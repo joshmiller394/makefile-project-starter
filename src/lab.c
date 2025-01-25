@@ -23,9 +23,8 @@ list_t *list_init(void (*destroy_data)(void *), int (*compare_to)(const void *, 
     return list;
 }
 
-// Destroy the list and free all associated memory
 void list_destroy(list_t **list_ptr) {
-    if (!list_ptr || !(*list_ptr)) return;
+    if (!list_ptr || !*list_ptr) return;
 
     list_t *list = *list_ptr;
     node_t *current = list->head->next;
@@ -43,6 +42,7 @@ void list_destroy(list_t **list_ptr) {
     free(list);
     *list_ptr = NULL;
 }
+
 
 // Add data to the front of the list
 list_t *list_add(list_t *list, void *data) {
